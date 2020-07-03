@@ -8,6 +8,7 @@ function initApp() {
             sketches: [
                 'test',
                 'test 2'
+                // remember, list doesn't gracefully overflow yet
             ].map(elm => new Sketch(elm))
         }
     })
