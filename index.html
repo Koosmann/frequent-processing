@@ -3,135 +3,42 @@
   <head>
     <title>frequent processing</title>
     <style>
-      :root {
-        --outer-padding: 10px;
-      }
-
-      * {
-        box-sizing:border-box;
-      }
-
-      html,
-      body,
-      #app {
-        height: 100%;
-      }
-
-      body {
-        margin: 0;
-      }
-
-      #app {
-        display: flex;
-      }
-
-      #index {
-        padding: var(--outer-padding);
-        flex: 1;
-        
-      }
-
-      iframe {
-        height: calc(100vh);
-        width: calc(100vh);
-        padding: var(--outer-padding);
-        border: none;
-      }
-
-      /*
-        large
-      */
-      @media (min-aspect-ratio: 9/8) {
-        body {
-          background: red;
-        }
-      }
-
-      /*
-        weird in-between
-        (fill screen (with padding) overlay menu at bottom)
-      */
-      @media (min-aspect-ratio: 2/3) and (max-aspect-ratio: 9/8) {
-        body {
-          background: blue;
-        }
-      }
-
-
-      /*
-        mobile
-      */
-      @media (max-aspect-ratio: 2/3) {
-
-        #app {
-          flex-direction: column;
-        }
-
-        #index {
-          order: 2;
-        }
-
-        #detail {
-          order: 1;
-        }
-
-        iframe {
-          height: calc(100vw);
-        width: calc(100vw);
-        }
-      }
+      [v-cloak] > * { display:none }
+      [v-cloak]::before { content: "loading…" }
     </style>
+    <link href="styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script>
-      // content loading/routing
-      function setContentFromHash() {
-        try {
-          var iframeSrc = `${location.hash.replace('#', 'sketches/').replace()}`
-        } catch (e) {
-          console.log('fail :(')
-        }
-
-        const iframeElm = document.getElementById('view')
-        iframeElm.setAttribute('src' , iframeSrc)
-      }
-
-      window.onload = function () {
-        setContentFromHash()
-      }
-
-      window.onhashchange = setContentFromHash
-    </script>
-  </head>
+    <script src="main.js"></script>
+    </head>
   <body>
     <div id="app">
-      <div id="index">
+      <div id="index" v-cloak>
         <h1>frequent processing</h1>
         <ul>
-          <li v-for="sketch in sketches">
-            <a v-bind:href="sketch.path">{{ sketch.name }}</a>
+          <li 
+            v-for="sketch in sketches" 
+            v-bind:class="{ active: sketch.isActive() && key }"
+            v-on:click="sketch.key++"
+            class="sketch"
+          >
+            <a 
+              v-bind:id="sketch.id"
+              v-bind:href="sketch.path"
+            >&nbsp;&nbsp;{{ sketch.name }}</a>
+          </li>
+          <li class="spacer"> 
+            &nbsp;&nbsp;-
+          </li>
+          <li>
+            &nbsp;&nbsp;<a href="https://github.com/Koosmann/frequent-processing">source code</a>
           </li>
         </ul>
       </div>
       <div id="detail">
         <iframe id="view"></iframe>
       </div>
-    </div>
-    <script>
-      // data
-      const app = new Vue({
-        el: '#app',
-        data: {
-          sketches: [
-            'test',
-            'test 2'
-          ].map(elm => new Sketch(elm))
-        }
-      })
-
-      function Sketch(directory) {
-        this.name = directory
-        this.path = `#${directory.replace(/ /g, '-')}`
-      }
-    </script>
+    </div>      
   </body>
 </html>
