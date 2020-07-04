@@ -19,8 +19,7 @@
         <ul>
           <li 
             v-for="sketch in sketches" 
-            v-bind:class="{ active: sketch.isActive() && key }"
-            v-on:click="sketch.key++"
+            v-bind:class="{ active: sketch.isActive() }"
             class="sketch"
           >
             <a 

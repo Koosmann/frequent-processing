@@ -1,146 +1,112 @@
 :root {
---outer-padding: 10px;
+    --outer-padding: 10px;
 }
 
 * {
-box-sizing: border-box;
-font-family: 'Inconsolata', sans-serif;
+    box-sizing: border-box;
+    font-family: 'Inconsolata', sans-serif;
 }
 
 html,
 body,
 #app {
-height: 100%;
-font-size: 16px;
+    height: 100%;
+    font-size: 16px;
 }
 
 body {
-margin: 0;
+    margin: 0;
 }
 
 h1 {
-font-size: 1em;
-font-weight: normal;;
-padding: 0;
-margin: 0;
+    font-size: 1em;
+    font-weight: normal;;
+    padding: 0;
+    margin: 0;
 }
 
 a {
-text-decoration: none;
-color: black;
+    text-decoration: none;
+    color: black;
 }
 
 
 ul {
-margin: 0;
-padding-inline-start: 0;
+    margin: 0;
+    padding-inline-start: 0;
 }
 
 ul li {
-position: relative;
-list-style: none;
+    position: relative;
+    list-style: none;
 }
 
 ul li.sketch.active::before,
 ul li.sketch:hover::before {
-position: absolute;
-top: -.1em;
-left: 0;
-content: '\021B3';
+    position: absolute;
+    top: -.1em;
+    left: 0;
+    content: '\021B3';
 }
 
 ul li.spacer {
-opacity: 0;
+    opacity: 0;
 }
 
 #app {
-display: flex;
+    display: flex;
 }
 
 #index {
-padding: var(--outer-padding);
-flex: 1; 
+    padding: var(--outer-padding);
+    flex: 1; 
 }
 
 iframe {
-height: calc(100vh);
-width: calc(100vh);
-padding: var(--outer-padding);
-border: none;
+    height: calc(100vh);
+    width: calc(100vh);
+    padding: var(--outer-padding);
+    border: none;
 }
 
 /*
 large
 */
 @media (min-aspect-ratio: 20/16) {
-/*body {
-    background: red;
-}*/
-}
-
-/*
-weird in-between
-(fill screen (with padding) overlay menu at bottom)
-*/
-@media (min-aspect-ratio: 2/3) and (max-aspect-ratio: 20/16) {
-/*body {
-    background: blue;
-}*/
-
-#index {
-    position: absolute;
-    top: 67%;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 1);
-}
-
-#detail {
-    max-width: 100%;
-    overflow: hidden;
-    border: 10px white solid;
-}
-
-iframe {
-    padding: 0;
-}
-
-@media (max-aspect-ratio: 1/1) {
-    iframe {
-    height: calc(100vh);
-    width: calc(100vh);
-    }
-}
-
-@media (min-aspect-ratio: 1/1) {
-    iframe {
-    height: calc(100vw);
-    width: calc(100vw);
-    }
-}
+    /*body {
+        background: red;
+    }*/
 }
 
 
 /*
 mobile
 */
-@media (max-aspect-ratio: 2/3) {
+@media (max-aspect-ratio: 20/16) {
+    #app {
+        flex-direction: column;
+    }
 
-#app {
-    flex-direction: column;
-}
+    #index {
+        order: 2;
+    }
 
-#index {
-    order: 2;
-}
+    #detail {
+        order: 1;
+    }
 
-#detail {
-    order: 1;
-}
+    iframe {
+        height: calc(100vw);
+        width: calc(100vw);
+    }
 
-iframe {
-    height: calc(100vw);
-    width: calc(100vw);
-}
+    /*
+    weird in-between
+    */
+    @media (min-aspect-ratio: 2/3) {
+        iframe {
+            height: calc(67vh);
+            width: calc(100vw);
+        }
+    }    
 }
