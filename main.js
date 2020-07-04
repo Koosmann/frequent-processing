@@ -6,8 +6,7 @@ function initApp() {
         data: {
             key: 0,
             sketches: [
-                'test',
-                'test 2'
+                'discs',
                 // remember, list doesn't gracefully overflow yet
             ].map(elm => new Sketch(elm))
         }
