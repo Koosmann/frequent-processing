@@ -9,7 +9,7 @@ function setup() {
 function draw() {
   background('#999999');
    
-  stroke('#555555');
+  stroke('#333333');
   strokeWeight(2);
   
   const x = width / 2;
