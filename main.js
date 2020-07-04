@@ -2,6 +2,7 @@
 let app;
 const sketches = [
     'discs',
+    'snake'
     // remember, list doesn't gracefully overflow yet
 ].map(elm => new Sketch(elm))
 
@@ -21,7 +22,7 @@ function Sketch(name) {
     this.src = getSrcFromHash(this.hash)
 
     this.isActive = function () {
-        return location.hash == this.hash
+        return this.currentHash == this.hash
     }
 }
 
@@ -40,6 +41,12 @@ function getDefaultSketch() {
     return sketches[0]
 }
 
+function updateComponents() {
+    app.sketches.forEach(elm => {
+        elm.currentHash = location.hash
+    })
+}
+
 // content loading/routing
 function setContentFromHash() {
     let sketch = getSketchFromCurrentHash()
@@ -51,6 +58,8 @@ function setContentFromHash() {
 
     const iframeElm = document.getElementById('view')
     iframeElm.setAttribute('src' , sketch.src)
+
+    updateComponents()
 }
 
 function reload() {
@@ -58,8 +67,8 @@ function reload() {
 }
 
 window.onload = function () {
-    setContentFromHash()
     initApp()
+    setContentFromHash()
 
     window.onresize = _.debounce(reload, 500)
     window.onhashchange = setContentFromHash
