@@ -8,15 +8,18 @@ function draw() {
   noStroke();
   rect(0, 0, width, height);
   
-  stroke('#555555');
-  strokeWeight(1);
-  
   const x = width / 2;
   const y = height / 2;
   const size = 4;
   const area = width * height;
   const n = area / (size * 4);
   
+  strokeWeight(1);
+  
+  stroke('#777');
+  snake(x, y, 4, 3, n);
+  
+  stroke('#000000');
   snake(x, y, 4, 3, n);
   
   noLoop();
