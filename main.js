@@ -11,6 +11,7 @@ function initApp() {
     app = new Vue({
         el: '#app',
         data: {
+            generatedAt: null,
             sketches: sketches
         }
     })
@@ -60,6 +61,7 @@ function setContentFromHash() {
     const iframeElm = document.getElementById('view')
     iframeElm.setAttribute('src' , sketch.src)
 
+    app.generatedAt = new Date()
     updateComponents()
 }
 

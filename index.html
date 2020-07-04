@@ -35,6 +35,11 @@
             &nbsp;&nbsp;<a href="https://github.com/Koosmann/frequent-processing">source code</a>
           </li>
         </ul>
+        <div v-if="generatedAt" id="generatedAt">
+          <span>generated at {{ generatedAt.toString().slice(0, 24) }}</span>
+          <br>
+          <span id="copyright">© {{ generatedAt.getFullYear() }} marcus koosmann</span>
+        </div>
       </div>
       <div id="detail">
         <iframe id="view"></iframe>

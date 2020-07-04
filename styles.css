@@ -58,8 +58,21 @@ ul li.spacer {
 }
 
 #index {
+    position: relative;
     padding: var(--outer-padding);
     flex: 1; 
+}
+
+#generatedAt {
+    position: absolute;
+    bottom: var(--outer-padding);
+    right: var(--outer-padding);
+    font-size: 0.6em;
+    text-align: right;
+}
+
+#copyright {
+    font-size: .8em;
 }
 
 iframe {
