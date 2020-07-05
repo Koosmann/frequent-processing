@@ -29,15 +29,13 @@ function draw() {
     let x4 = (width / 8) + x4Jitter;
     let y4 = (height / 2) + y4Jitter;
     
+    let nX = round(random(5, 100));
+    let nY = round(random(5, 100));
+    
     mesh(x1, y1, x2, y2, x3, y3, x4, y4, nX, nY);
   }
   
-  let nX = round(random(10, 100));
-  let nY = round(random(10, 100));
   drawRandomMesh();
-  
-  //nX = round(random(5, 50));
-  //nY = round(random(5, 50));
   drawRandomMesh();
   
   noLoop();
