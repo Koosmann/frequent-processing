@@ -1,5 +1,6 @@
 // data
 let app;
+let initialSize;
 const sketches = [
     'discs',
     'snake',
@@ -10,6 +11,7 @@ const sketches = [
 ].map(elm => new Sketch(elm))
 
 function initApp() {
+    initialSize = getViewSize()
     app = new Vue({
         el: '#app',
         data: {
@@ -45,6 +47,18 @@ function getDefaultSketch() {
     return sketches[0]
 }
 
+function getView() {
+    return document.getElementById('view')
+}
+
+function getViewSize() {
+    let iframe = getView()
+    return {
+        width: iframe.clientWidth,
+        height: iframe.clientHeight
+    }
+}
+
 function updateComponents() {
     app.sketches.forEach(elm => {
         elm.currentHash = location.hash
@@ -60,15 +74,19 @@ function setContentFromHash() {
         location.replace(sketch.hash)
     }    
 
-    const iframeElm = document.getElementById('view')
-    iframeElm.setAttribute('src' , sketch.src)
+    getView().setAttribute('src' , sketch.src)
 
     app.generatedAt = new Date()
     updateComponents()
 }
 
 function reload() {
-    location.reload()
+    let currentSize = getViewSize();
+    
+    if (initialSize.height !== currentSize.height || initialSize.width !== currentSize.width) {
+        console.log(' reload')
+        location.reload()
+    }
 }
 
 window.onload = function () {
