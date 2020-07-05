@@ -2,11 +2,12 @@ let offset = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  pixelDensity(2);
+  pixelDensity(3);
 }
 
 function draw() {
   background('#999999');
+  //strokeWeight(1/displayDensity());
   noFill();
   
   const columns = random(3, 10);

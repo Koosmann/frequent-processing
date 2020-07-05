@@ -2,7 +2,7 @@ let offset = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  pixelDensity(2);
+  pixelDensity(3);
   frameRate(30);
 }
 
