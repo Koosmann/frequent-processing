@@ -4,7 +4,8 @@ const sketches = [
     'discs',
     'snake',
     'burst',
-    'mesh'
+    'mesh',
+    'spiral'
     // remember, list doesn't gracefully overflow yet
 ].map(elm => new Sketch(elm))
 
