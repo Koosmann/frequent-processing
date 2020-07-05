@@ -7,41 +7,61 @@ function draw() {
   fill('#999999');
   noStroke();
   rect(0, 0, width, height);
-
-  fill('#00000022');
   
-  const hypotenuse = sqrt(pow(width, 2) + pow(height, 2));
-  const angle = asin(height / hypotenuse);
+  noFill();
+  stroke('#555555');
   
-  const startPadding = 0.05;
-  const x = width * startPadding;
-  const y = height * startPadding;
+  function drawRandomDiscs(invert) {
+    const hypotenuse = sqrt(pow(width, 2) + pow(height, 2));
+    const angle = asin(height / hypotenuse) + random(-PI/2, PI/2);
+    
+    const startPadding = 0.05;
+    const posJitter = random(0, 0.5);
+    const xJitter = width * posJitter;
+    const yJitter = height * posJitter;
+    const x = width * startPadding + xJitter;
+    const y = height * startPadding + yJitter;
+    
+    const startSize = 0.05;
+    let width1 = width * startSize * random(0.1, 1.2);
+    let height1 = height * startSize * 0.5 * random(0.1, 1.2);
+    
+    const endSize = 0.2;
+    let width2 = width * endSize * random(0.8, 1.2);
+    let height2 = height * endSize * random(0.8, 1.2);
+    
+    const endPadding = 0.15;
+    
+    const n = hypotenuse / 100 * random(1, 10);
+    const inc = ((hypotenuse - ((startPadding * hypotenuse) + (endPadding * hypotenuse))) / n) * random(0.5, 1);
+    
+    if (invert) {
+      let width3 = width1;
+      let height3 = height1;
+      
+      width1 = width2;
+      height1 = height2;
+      width2 = width3;
+      height2 = height3;
+    }
   
-  const startSize = 0.05;
-  const width1 = width * startSize;
-  const height1 = height * startSize * 0.5;
+    discs(
+      x, 
+      y, 
+      width1, 
+      height1, 
+      width2, 
+      height2, 
+      angle, 
+      inc, 
+      n
+    );
+  }
   
-  const endSize = 0.2;
-  const width2 = width * endSize;
-  const height2 = height * endSize;
+  drawRandomDiscs();
+  drawRandomDiscs(true);
   
-  const endPadding = 0.15;
-  
-  const n = hypotenuse / 10;
-  const inc = (hypotenuse - ((startPadding * hypotenuse) + (endPadding * hypotenuse))) / n;
-
-  discs(
-    x, 
-    y, 
-    width1, 
-    height1, 
-    width2, 
-    height2, 
-    angle, 
-    inc, 
-    n
-  );
-
+  drawRandomDiscs(random(0, 1) > .5);
   noLoop();
 }
 
