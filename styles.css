@@ -71,6 +71,27 @@ ul li.spacer {
     text-align: right;
 }
 
+.reload {
+    position: relative;
+    user-select: none;
+}
+
+.reload::before {
+    --tolerance: -10px;
+    
+    position: absolute;
+    top: var(--tolerance);
+    right: var(--tolerance);
+    bottom: var(--tolerance);
+    left: var(--tolerance);
+    content: " "; /* for debugging */
+}
+
+.reload::after {
+    content: '\021bb';
+    font-size: 1.5em;
+}
+
 #copyright {
     font-size: .8em;
 }

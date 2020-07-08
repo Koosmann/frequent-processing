@@ -7,7 +7,6 @@ function setup() {
 
 function draw() {
   background('#999999');
-  //strokeWeight(1/displayDensity());
   noFill();
   
   const columns = random(3, 10);
@@ -36,7 +35,6 @@ function spiral(x, y, w, minH, maxH, n, speed) {
   ellipseMode(CORNER);
   for (let i = 0; i < n; i++) {
     let intH = (amp/2 * sin(sin(i*speed))) + (amp);
-    print(intH);
     
     if (i % 2 == 0) {
       arc(x, y, w, intH, start, stop);

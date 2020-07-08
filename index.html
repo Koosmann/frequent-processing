@@ -37,6 +37,7 @@
         </ul>
         <div v-if="generatedAt" id="generatedAt">
           <span>generated at {{ generatedAt.toString().slice(0, 24) }}</span>
+          <span v-on:click="reloadContent()" class="reload"></span>
           <br>
           <span id="copyright">© {{ generatedAt.getFullYear() }} marcus koosmann</span>
         </div>

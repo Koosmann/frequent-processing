@@ -16,6 +16,7 @@ function initApp() {
         el: '#app',
         data: {
             generatedAt: null,
+            reloadContent: reloadContent,
             sketches: sketches
         }
     })
@@ -56,6 +57,14 @@ function getViewSize() {
     return {
         width: iframe.clientWidth,
         height: iframe.clientHeight
+    }
+}
+
+function reloadContent() {
+    let iframe = getView()
+
+    if (iframe) {
+        iframe.contentWindow.redraw();
     }
 }
 
