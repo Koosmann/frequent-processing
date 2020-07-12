@@ -6,7 +6,8 @@ const sketches = [
     'snake',
     'burst',
     'mesh',
-    'spiral'
+    'spiral',
+    'spiral ii'
     // remember, list doesn't gracefully overflow yet
 ].map(elm => new Sketch(elm))
 
@@ -35,7 +36,7 @@ function Sketch(name) {
 
 function getSrcFromHash(hash) {
     hash = hash || '' // default to string
-    return `${hash.replace('#', 'sketches/')}`
+    return `${hash.replace(/-/g, '_').replace('#', 'sketches/')}`
 }
 
 function getSketchFromCurrentHash() {
