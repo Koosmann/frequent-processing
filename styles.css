@@ -41,8 +41,8 @@ ul li {
     list-style: none;
 }
 
-ul li.sketch.active::before,
-ul li.sketch:hover::before {
+ul li a.sketch.active::before,
+ul li a.sketch:hover::before {
     position: absolute;
     top: -.1em;
     left: 0;

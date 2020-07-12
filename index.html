@@ -20,10 +20,11 @@
         <ul>
           <li 
             v-for="sketch in sketches" 
-            v-bind:class="{ active: sketch.isActive() }"
-            class="sketch"
+            
           >
             <a 
+            v-bind:class="{ active: sketch.isActive() }"
+            class="sketch"
               v-bind:id="sketch.id"
               v-bind:href="sketch.hash"
             >&nbsp;&nbsp;{{ sketch.name }}</a>
